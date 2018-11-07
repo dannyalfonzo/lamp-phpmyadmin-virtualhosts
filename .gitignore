@@ -11,3 +11,4 @@ sites-enabled/*
 
 .idea/*
 *.project
+*.log
