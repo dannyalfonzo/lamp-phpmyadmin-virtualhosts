@@ -1,0 +1,13 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+
+db_filesystem/*
+sites/*
+!sites/localhost
+!sites/test.localhost
+sites-enabled/*
+!sites-enabled/localhost.conf
+!sites-enabled/test.localhost.conf
+
+
+.idea/*
+*.project

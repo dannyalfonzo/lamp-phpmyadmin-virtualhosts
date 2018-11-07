@@ -1,0 +1,42 @@
+version: "2"
+services:
+    www:
+        container_name: lamp_apache
+        build: ./php/
+        ports: 
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./sites:/var/www/html
+            - ./sites-enabled:/etc/apache2/sites-enabled
+        links:
+            - db
+        networks:
+            - default
+    db:
+        container_name: lamp_db
+        image: mysql:5.7
+        ports: 
+            - "3306:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: root 
+        volumes:
+            - ./db_filesystem:/home
+            - persistent:/var/lib/mysql
+        networks:
+            - default
+    phpmyadmin:
+        container_name: lamp_phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        links: 
+            - db:db
+        ports:
+            - 8000:80
+        environment:
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+        networks:
+            - default
+volumes:
+    persistent:
