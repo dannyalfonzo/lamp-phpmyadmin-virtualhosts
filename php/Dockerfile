@@ -8,11 +8,26 @@ RUN a2enmod rewrite
 
 RUN apt-get update
 
-RUN apt-get install libcurl3-dev libpng-dev libmcrypt-dev libxml2-dev -y
+RUN apt-get install libcurl3-dev libpng-dev libmcrypt-dev libxml2-dev libgd-dev libfreetype6-dev libldap2-dev libjpeg62-turbo-dev cron nano -y
+
+RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql curl gd mbstring gettext mcrypt xmlrpc soap intl zip xml
 
-#RUN docker-php-ext-install curl gd mbstring gettext mcrypt xmlrpc soap intl zip xml
+## para magento 2
+RUN docker-php-ext-install bcmath
+RUN docker-php-ext-install ctype
+RUN docker-php-ext-install dom
+RUN docker-php-ext-install hash
+RUN docker-php-ext-install simplexml
+##RUN docker-php-ext-install spl
+
+# Install XSL
+RUN apt-get install -y libxslt-dev
+RUN docker-php-ext-install xsl
+
+RUN docker-php-ext-install json
+RUN docker-php-ext-install iconv
 
 # enable mail sending for php with sendmail
 #RUN apt-get update && apt-get upgrade -y sendmail && rm -rf /var/lib/apt/lists/* && \
