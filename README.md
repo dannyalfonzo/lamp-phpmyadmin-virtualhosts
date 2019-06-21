@@ -1,12 +1,12 @@
 # lamp-phpmyadmin-virtualhosts
 LAMP + phpmyadmin + apache virtual hosts
 
-Para instalar o actualizar el LAMP
+Para instalar o actualizar el LAMP: 
 docker-compose build
 
-Para inicicar el LAMP
+Para inicicar el LAMP: 
 docker-compose up -d
 
-Para detenerlo
+Para detenerlo: 
 docker-compose down
 
